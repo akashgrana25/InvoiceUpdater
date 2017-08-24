@@ -2,14 +2,22 @@
 
 const fs = require('fs');
 
-fs.readFile('Ambi.csv', 'utf8', async(error, invoiceData) => {
-    if (error) throw error;
-    const updatedData = await processItem(invoiceData);
-    fs.writeFileSync('Ambi.csv', updatedData);
-    console.log("done");
+fs.readdir("./data/", (err, files) => {
+    for (const file of files) {
+        fs.readFile(`./data/${file}`, 'utf8', async(error, invoiceData) => {
+            if (error) throw error;
+            const updatedData = await processItem(invoiceData);
+            fs.writeFileSync(`./data/${file}`, updatedData);
+        });
+    }
 });
 
-
+/**
+ * Process Invoice Item
+ *
+ * @param {string} invoiceData contents of invoice file.
+ * @returns {string} updated contents of the invoice file.
+ */
 const processItem = (invoiceData) => {
 
     return new Promise((resolve, reject) => {
@@ -24,7 +32,7 @@ const processItem = (invoiceData) => {
             }
             resolve(invoiceFile);
         } catch (err) {
-            reject();
+            reject(err);
         }
     });
 }
