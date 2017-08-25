@@ -14,7 +14,7 @@ Invoice updater is a code snippet to calculate cost for multiple products in bul
 
 ### Installation
 
-Invoice Updater requires [Node.js](https://nodejs.org/) v6+ to run.
+Invoice Updater requires [Node.js](https://nodejs.org/) v7.5+ to run.
 
 Install the dependencies.
 
